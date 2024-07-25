@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
 
 const Block = ({ isTapped }) => {
   return (
@@ -9,7 +9,7 @@ const Block = ({ isTapped }) => {
         height: 50,
         marginTop: 5,
         borderRadius: 10,
-        backgroundColor: 'pink',
+        backgroundColor: "pink",
         opacity: isTapped ? 0 : 1,
       }}
       animate={{ y: isTapped ? -50 : 0, opacity: isTapped ? 0 : 1 }}
