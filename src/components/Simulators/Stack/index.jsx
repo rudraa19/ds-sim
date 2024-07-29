@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Block from "./Block";
 
 const StackSimulator = () => {
   const [top, setTop] = useState(3);
+  const [condition, setCondition] = useState('');
 
   const pop = () => {
     if (top < 0) {
@@ -19,6 +20,14 @@ const StackSimulator = () => {
       setTop((prevTop) => prevTop + 1);
     }
   };
+
+  useEffect(() => {
+    if(top === -1){
+      setCondition("Stack is empty");
+    } else if(top === 3) {
+      setCondition("Stack is full")
+    }
+  }, [top]);
 
   return (
     <div>
@@ -44,18 +53,21 @@ const StackSimulator = () => {
 
       <button
         onClick={pop}
-        style={{ margin: 10, backgroundColor: "black", color: "white" }}
+        style={{ margin: 10, backgroundColor: (top==-1)?"gray":"black", color: "white", cursor: top==-1 && "not-allowed", transition: "background-color 0.1s linear" }} disabled={top==-1}
       >
         Pop
       </button>
       <button
         onClick={push}
-        style={{ margin: 10, backgroundColor: "black", color: "white" }}
+        style={{ margin: 10, backgroundColor: (top==3)?"gray":"black", color: "white", cursor: top==3 && "not-allowed", transition: "background-color 0.1s linear" }} disabled={top==3}
       >
         Push
       </button>
-
       <br />
+      <h3 style={{
+        opacity: (top === -1 || top === 3) ? 1 : 0,
+        transition: 'opacity 0.1s linear'
+      }}>{condition}</h3>
       <h3>Top: {top}</h3>
     </div>
   );

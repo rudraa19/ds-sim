@@ -7,9 +7,6 @@ function App() {
   return (
     <div>
       <StackSimulator />
-
-      <br />
-
       <Footer />
     </div>
   );
